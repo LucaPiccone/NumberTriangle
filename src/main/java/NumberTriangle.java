@@ -138,6 +138,7 @@ public class NumberTriangle {
             numberTriangleList.add(rowListNumberTriangle);
             line = br.readLine();
         }
+        br.close();
 
         NumberTriangle index = numberTriangleList.get(0).get(0);
         int numberTriangleListLength = numberTriangleList.size();
@@ -149,12 +150,6 @@ public class NumberTriangle {
                 index.right = numberTriangleList.get(i+1).get(j + 1);
             }
         }
-//        75        i = 0
-//        95 64     i = 1
-//        17 47 82  i = 2
-
-        br.close();
-
         return numberTriangleList.get(0).get(0);
     }
 
