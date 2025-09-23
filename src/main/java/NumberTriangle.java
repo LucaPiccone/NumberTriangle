@@ -55,7 +55,6 @@ public class NumberTriangle {
         return root;
     }
 
-
     /**
      * [not for credit]
      * Set the root of this NumberTriangle to be the max path sum
