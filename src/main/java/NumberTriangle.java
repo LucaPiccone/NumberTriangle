@@ -87,9 +87,8 @@ public class NumberTriangle {
      */
     public int retrieve(String path) {
         NumberTriangle index = this;
-        if (path == null || path.isEmpty()) {
+        if (path == null || path.isEmpty())
             return this.root;
-        }
         int strlen = path.length();
         for (int i = 0; i < strlen; i++) {
             if (path.charAt(i) == 'l')
