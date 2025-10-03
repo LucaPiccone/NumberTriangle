@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.concurrent.LinkedBlockingDeque;
 
 /**
  * This is the provided NumberTriangle class to be used in this coding task.
@@ -32,9 +31,7 @@ import java.util.concurrent.LinkedBlockingDeque;
  *
  */
 public class NumberTriangle {
-
     private int root;
-
     private NumberTriangle left;
     private NumberTriangle right;
 
@@ -45,7 +42,6 @@ public class NumberTriangle {
     public void setLeft(NumberTriangle left) {
         this.left = left;
     }
-
 
     public void setRight(NumberTriangle right) {
         this.right = right;
@@ -91,19 +87,16 @@ public class NumberTriangle {
      */
     public int retrieve(String path) {
         NumberTriangle index = this;
-        if (path == null) {
+        if (path == null || path.isEmpty()) {
             return this.root;
-        } else {
-            int strlen = path.length();
-            for (int i = 0; i < strlen; i++) {
-                if (path.charAt(i) == 'l') {
-                    index = index.left;
-                } else if (path.charAt(i) == 'r') {
-                    index = index.right;
-                }
-            }
         }
-
+        int strlen = path.length();
+        for (int i = 0; i < strlen; i++) {
+            if (path.charAt(i) == 'l')
+                index = index.left;
+            else
+                index = index.right;
+        }
         return index.root;
     }
 
@@ -125,8 +118,6 @@ public class NumberTriangle {
         BufferedReader br = new BufferedReader(new InputStreamReader(inputStream));
 
         String line = br.readLine();
-        NumberTriangle top = new NumberTriangle(Integer.parseInt(line));
-
         List<List<NumberTriangle>> numberTriangleList = new ArrayList<>();
         while (line != null) {
             List<String> rowListString = Arrays.asList(line.split(" "));
@@ -139,9 +130,9 @@ public class NumberTriangle {
         }
         br.close();
 
-        NumberTriangle index = numberTriangleList.get(0).get(0);
-        int numberTriangleListLength = numberTriangleList.size();
-        for (int i = 0; i < numberTriangleListLength - 1; i++) {
+        NumberTriangle index;
+        int numberTriangleListLength = numberTriangleList.size() - 1;
+        for (int i = 0; i < numberTriangleListLength; i++) {
             int numberTriangleListRowLength = numberTriangleList.get(i).size();
             for (int j = 0; j < numberTriangleListRowLength; j++) {
                 index = numberTriangleList.get(i).get(j);
@@ -153,7 +144,6 @@ public class NumberTriangle {
     }
 
     public static void main(String[] args) throws IOException {
-
         NumberTriangle mt = NumberTriangle.loadTriangle("input_tree.txt");
 
         // [not for credit]
